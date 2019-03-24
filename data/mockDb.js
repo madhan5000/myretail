@@ -9,9 +9,9 @@ const database = [
     },
     {
         "id": 15117729,
-        "name": "The Big Lebowski (Blu-ray) (Widescreen)",
+        "name": "Item 15117729 ",
         "current_price": {
-          "value": 13.49,
+          "value": 15.11,
           "currency_code": "USD"
         }
     },

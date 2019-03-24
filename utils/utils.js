@@ -1,7 +1,8 @@
 const utils = {
-    '_message' : (message) =>{
+    '_message' : (code, message) =>{
         return {
             'error' : {
+                'code'    : code,
                 'message' : message
             }
         }

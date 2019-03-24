@@ -1,7 +1,8 @@
 import utils from './utils'
 
-const errors = {
-    'NOTFOUND' : utils._message('item not found')
+const error = {
+    'NOTFOUND' : utils._message('NOTFOUND','item not found'),
+    'SERVICE_UNAVAILABLE' : utils._message('SERVICE_UNAVAILABLE','Service Unavaliable')
 }
 
-export default errors;
+export default error;
