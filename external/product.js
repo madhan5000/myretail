@@ -1,9 +1,12 @@
 import https from 'https'
 import error from '../utils/errors'
+import config from '../config'
+
 
 const getProductDetails = (productId)=>{
     return new Promise ((resolve,reject)=>{
-        const apiUrl = `https://redsky.target.com/v2/pdp/tcin/${productId}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics`;    
+        //const apiUrl = `https://redsky.target.com/v2/pdp/tcin/${productId}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics`;    
+        const apiUrl = config.extApi.product.replace('${productId}',productId);
         const request = https.get(apiUrl, (res) => {
             let data = '';
 
@@ -17,7 +20,9 @@ const getProductDetails = (productId)=>{
             });
           
           }).on("error", (err) => {
-            reject(error.SERVICE_UNAVAILABLE);
+            const serviceError = error.SERVICE_UNAVAILABLE;
+            serviceError.error['service'] = 'product'
+            reject(serviceError);
           });
     })
     

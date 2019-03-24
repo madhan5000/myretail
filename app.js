@@ -6,9 +6,9 @@ import database from './data/mockDb'
 import error from './utils/errors'
 import productName from './external/product'
 import producePrice from './external/price'
+import config from './config'
 
-const app = express()
-const PORT = 3000 || process.env.PORT ;
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,12 +22,14 @@ app.get('/api/v1/products/:id', async (req, res) => {
     console.log(_id);
     try{
         let name = await productName(_id);
+        console.log(name);
     }
     catch(err){
         console.log(err);
     }
     try{
         let price = await producePrice(_id);
+        console.log(price)
     }
     catch(err){
         console.log(err);
@@ -39,6 +41,6 @@ app.get('/api/v1/products/:id', async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`you are server is running on ${PORT}`);
+app.listen(config.app.port, () => {
+    console.log(`you are server is running on ${config.app.port}`);
 });
