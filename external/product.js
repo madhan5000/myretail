@@ -1,7 +1,8 @@
 import https from 'https'
 import error from '../utils/errors'
 import config from '../config'
-
+import log from '../logger'
+const logger = log(__filename);
 
 const getProductDetails = (productId)=>{
     return new Promise ((resolve,reject)=>{
@@ -16,10 +17,12 @@ const getProductDetails = (productId)=>{
           
             res.on('end', () => {
               let result = JSON.parse(data);
+              logger.debug(JSON.stringify(result));
               resolve(result.product.item.product_description.title);
             });
           
           }).on("error", (err) => {
+            logger.debug(err);
             const serviceError = error.SERVICE_UNAVAILABLE;
             serviceError.error['service'] = 'product'
             reject(serviceError);

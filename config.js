@@ -1,9 +1,11 @@
 // config.js
 import dotenv from 'dotenv'
+import log from './logger'
+const logger = log(__filename);
 
 dotenv.config();
 
-console.log(process.env.NODE_ENV)
+logger.info(`NODE_ENV : ${process.env.NODE_ENV}`)
 
 
 const env = process.env.NODE_ENV; // 'dev' or 'test'

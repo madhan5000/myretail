@@ -1,6 +1,8 @@
 import https from 'https'
 import error from '../utils/errors'
 import config from '../config'
+import log from '../logger'
+const logger = log(__filename);
 
 const getPriceDetails = (productId)=>{
     return new Promise ((resolve,reject)=>{
@@ -15,10 +17,12 @@ const getPriceDetails = (productId)=>{
           
             res.on('end', () => {
                 let result = JSON.parse(data);
+                logger.debug(JSON.stringify(result));
                 resolve(result.product.price.offerPrice.price);
             });
           
           }).on("error", (err) => {
+            logger.debug(err);
             const serviceError = error.SERVICE_UNAVAILABLE;
             serviceError.error['service'] = 'price'
             reject(serviceError);

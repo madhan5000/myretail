@@ -8,6 +8,9 @@ import productName from './external/product'
 import producePrice from './external/price'
 import config from './config'
 
+import log from './logger'
+const logger = log(__filename);
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,20 +22,20 @@ app.use(bodyParser.json());
 
 app.get('/api/v1/products/:id', async (req, res) => {
     const _id = req.params.id;
-    console.log(_id);
+    logger.debug(`req.params.id: ${_id}`);
     try{
         let name = await productName(_id);
-        console.log(name);
+        logger.info(name);
     }
     catch(err){
-        console.log(err);
+       logger.debug(err);
     }
     try{
         let price = await producePrice(_id);
-        console.log(price)
+        logger.info(price);
     }
     catch(err){
-        console.log(err);
+        logger.debug(err);
     }
     let response = database.find((item)=>{
         return item.id == _id;
@@ -42,5 +45,5 @@ app.get('/api/v1/products/:id', async (req, res) => {
 
 
 app.listen(config.app.port, () => {
-    console.log(`you are server is running on ${config.app.port}`);
+    logger.info(`Server is running on ${config.app.port}`);
 });
