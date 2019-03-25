@@ -1,12 +1,13 @@
 import https from 'https'
 import error from '../utils/errors'
+import utils from '../utils/utils'
 import config from '../config'
 import log from '../logger'
 const logger = log(__filename);
 
 const getPriceDetails = (productId)=>{
     return new Promise ((resolve,reject)=>{
-        //const apiUrl = `https://redsky.target.com/v2/pdp/tcin/${productId}?excludes=taxonomy,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics`;    
+       
         const apiUrl = config.extApi.price.replace('${productId}',productId);
         const request = https.get(apiUrl, (res) => {
             let data = '';
@@ -18,7 +19,14 @@ const getPriceDetails = (productId)=>{
             res.on('end', () => {
                 let result = JSON.parse(data);
                 logger.debug(JSON.stringify(result));
-                resolve(result.product.price.offerPrice.price);
+                if(utils._isEmpty(result.product.item)){
+                    logger.info(`${productId} : NOT FOUND in price API`);
+                    const notFound = error.NOTFOUND;
+                    notFound.error['service'] = 'price';
+                    reject(notFound);
+                }else{
+                    resolve(result.product.price.offerPrice.price);
+                  }
             });
           
           }).on("error", (err) => {
