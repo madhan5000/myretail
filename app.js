@@ -87,6 +87,7 @@ app.get('/api/v1/products/:id/db',async (req, res) => {
 
 app.put('/api/v1/products/:id',async (req, res) => {
     //Create a new product
+    //TODO : Verify API Token
     logger.debug(JSON.stringify(req.body));
     const _id = req.params.id;
     logger.debug(`req.params.id: ${_id}`);
@@ -102,6 +103,7 @@ app.put('/api/v1/products/:id',async (req, res) => {
 
 app.post('/api/v1/products/:id',async (req, res) => {
     //Update existing product
+    //TODO : Verify API Token
     logger.debug(JSON.stringify(req.body));
     const _id = req.params.id;
     logger.debug(`req.params.id: ${_id}`);
