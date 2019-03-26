@@ -8,9 +8,7 @@ Instructions to run this service
 
 ```
 $ git clone repo
-```
-
-```
+$ cd myretail
 $ npm i
 ```
 
