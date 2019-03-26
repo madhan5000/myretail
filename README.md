@@ -1,6 +1,6 @@
 # myretail
 
-A restful API service that can retrive product details based on provided 'Product ID'
+A restful API service that can retrive product details based on 'Product ID'
 
 This service is implemented using Node JS / Express framework
 
@@ -14,13 +14,13 @@ $ git clone repo
 $ npm i
 ```
 
-Development 
+### Development 
 
 ```
 $ npm run start-dev
 ```
 
-Prodcution
+### Production
 
 edit .env file and set NODE_ENV='prod'
 
@@ -82,3 +82,14 @@ Resulting JSON
 {"success":{"message":"item 13860428 updated"}}
 
 ```
+
+# TO DO
+* Add support for Database, current is using in memory datastore.
+* Make a docker container
+* Improve security
+  - Verify token for PUT and POST
+* Improve validation
+  - Validate incoming JSON
+* Implement caching for frequently requested product Ids.
+  - show cached data when External API services are Down ?
+* Add Swagger docs 
