@@ -84,7 +84,8 @@ Resulting JSON
 ```
 
 # TO DO
-* Add support for Database, current is using in memory datastore.
+* Add support for a Database, currently it is using in memory datastore.
+* Add tests
 * Make a docker container
 * Improve security
   - Verify token for PUT and POST
