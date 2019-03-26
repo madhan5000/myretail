@@ -12,7 +12,24 @@ $ cd myretail
 $ npm i
 ```
 
+### Environment Variables
+Environment variables are stored in .env file which is automatically loaded by the application.
+
+So create .env file and add following variables
+
+```bash
+NODE_ENV='dev'
+
+DEV_PRODUCT_API="https://localhost:3001/products/${productId}"
+DEV_PRICE_API="https://localhost:3002/price/${productId}"
+PROD_PRODUCT_API="https://<ProdAPI>/${productId}"
+PROD_PRICE_API="https://<ProdAPI>/${productId}"
+
+```
+
 ### Development 
+edit .env file and set NODE_ENV='dev'
+
 
 ```
 $ npm run start-dev
@@ -48,6 +65,65 @@ Resulting JSON
     }
 }
 ```
+### Errors
+
+When requested product is not available 
+
+```JSON
+{
+  "id": "12111111",
+  "name": "",
+  "current_price": {
+    "value": 0,
+    "currency_code": "USD"
+  },
+  "status": [ //captures reason
+    {
+      "error": {
+        "code": "NOTFOUND",
+        "message": "item not found",
+        "service": "product"
+      }
+    },
+    {
+      "error": {
+        "code": "NOTFOUND",
+        "message": "item not found",
+        "service": "price"
+      }
+    }
+  ]
+}
+
+```
+When external service is not avaliable
+
+```JSON
+{
+  "id": "13860428",
+  "name": "",
+  "current_price": {
+    "value": 0,
+    "currency_code": "USD"
+  },
+  "status": [
+    {
+      "error": {
+        "code": "SERVICE_UNAVAILABLE",
+        "message": "Service Unavaliable",
+        "service": "product"
+      }
+    },
+    {
+      "error": {
+        "code": "SERVICE_UNAVAILABLE",
+        "message": "Service Unavaliable",
+        "service": "price"
+      }
+    }
+  ]
+}
+```
 
 
 ## To add a new product 
@@ -64,6 +140,8 @@ Resulting JSON
 ```JSON
 {"success":{"message":"item 11111111 inserted"}}
 ```
+
+
 
 ## To update an existing product
 
