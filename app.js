@@ -85,7 +85,7 @@ app.get('/api/v1/products/:id/db',async (req, res) => {
 
 });
 
-app.put('/api/v1/products/:id',async (req, res) => {
+app.post('/api/v1/products/:id',async (req, res) => {
     //Create a new product
     //TODO : Verify API Token
     //TODO : Incoming JSON validation
@@ -98,12 +98,12 @@ app.put('/api/v1/products/:id',async (req, res) => {
         return item.id == _id;
     });
     if(dbItemIndex >= 0)
-        return res.status(200).send({error : {message : `item ${_id} found, use POST method if you want to create a product`}});
+        return res.status(200).send({error : {message : `item ${_id} found, use PUT method if you want to update a product`}});
     database.push(req.body);
     return res.status(200).send({success :{message : `item ${_id} inserted`}});
 });
 
-app.post('/api/v1/products/:id',async (req, res) => {
+app.put('/api/v1/products/:id',async (req, res) => {
     //Update existing product
     //TODO : Verify API Token
     //TODO : Incoming JSON validation
@@ -115,7 +115,7 @@ app.post('/api/v1/products/:id',async (req, res) => {
         return item.id == _id;
     });
     if(dbItemIndex < 0)
-        return res.status(200).send({error : {message : `item ${_id} not found, use PUT method if you want to create a product`}});
+        return res.status(200).send({error : {message : `item ${_id} not found, use POST method if you want to create a product`}});
     logger.info(dbItemIndex)
     database[dbItemIndex] = req.body;
     return res.status(200).send({success :{message : `item ${_id} updated`}});
