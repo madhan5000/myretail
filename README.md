@@ -77,19 +77,23 @@ When requested product is not available
     "value": 0,
     "currency_code": "USD"
   },
-  "status": [ //captures reason
+"status": [
     {
-      "error": {
-        "code": "NOTFOUND",
-        "message": "item not found",
-        "service": "product"
+      "service": "product",
+      "status": {
+        "error": {
+          "code": "NOTFOUND",
+          "message": "Item not found"
+        }
       }
     },
     {
-      "error": {
-        "code": "NOTFOUND",
-        "message": "item not found",
-        "service": "price"
+      "service": "price",
+      "status": {
+        "error": {
+          "code": "NOTFOUND",
+          "message": "Item not found"
+        }
       }
     }
   ]
@@ -106,19 +110,23 @@ When external service is not avaliable
     "value": 0,
     "currency_code": "USD"
   },
-  "status": [
+"status": [
     {
-      "error": {
-        "code": "SERVICE_UNAVAILABLE",
-        "message": "Service Unavaliable",
-        "service": "product"
+      "service": "product",
+      "status": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Service Unavaliable"
+        }
       }
     },
     {
-      "error": {
-        "code": "SERVICE_UNAVAILABLE",
-        "message": "Service Unavaliable",
-        "service": "price"
+      "service": "price",
+      "status": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Service Unavaliable"
+        }
       }
     }
   ]
