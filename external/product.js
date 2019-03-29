@@ -21,9 +21,10 @@ const getProductDetails = (productId)=>{
               logger.debug(JSON.stringify(result));
               if(utils._isEmpty(result.product.item)){
                 logger.info(`${productId} : NOT FOUND in product API`);
-                const notFound = error.NOTFOUND;
-                notFound.error['service'] = 'product';
-                reject(notFound);
+                const notFound = {
+                  'service' : 'price',
+                  'status'  : error.NOTFOUND
+                } ;
               }else{
                 resolve(result.product.item.product_description.title);
               }
@@ -32,8 +33,10 @@ const getProductDetails = (productId)=>{
           
           }).on("error", (err) => {
             logger.debug(err);
-            const serviceError = error.SERVICE_UNAVAILABLE;
-            serviceError.error['service'] = 'product'
+            const serviceError ={
+              'service' : 'product',
+              'status' : error.SERVICE_UNAVAILABLE
+            } ;
             reject(serviceError);
           });
     })

@@ -21,8 +21,10 @@ const getPriceDetails = (productId)=>{
                 logger.debug(JSON.stringify(result));
                 if(utils._isEmpty(result.product.item)){
                     logger.info(`${productId} : NOT FOUND in price API`);
-                    const notFound = error.NOTFOUND;
-                    notFound.error['service'] = 'price';
+                    const notFound = {
+                      'service' : 'price',
+                      'status'  : error.NOTFOUND
+                    } ;
                     reject(notFound);
                 }else{
                     resolve(result.product.price.offerPrice.price);
@@ -31,8 +33,10 @@ const getPriceDetails = (productId)=>{
           
           }).on("error", (err) => {
             logger.debug(err);
-            const serviceError = error.SERVICE_UNAVAILABLE;
-            serviceError.error['service'] = 'price'
+            const serviceError ={
+              'service' : 'price',
+              'status' : error.SERVICE_UNAVAILABLE
+            } ;
             reject(serviceError);
           });
     })
