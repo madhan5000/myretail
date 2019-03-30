@@ -23,7 +23,7 @@ const getProductDetails = (productId)=>{
                 logger.info(`${productId} : NOT FOUND in product API`);
                 const notFound = {
                   'service' : 'product',
-                  'status'  : error.NOTFOUND
+                  'error'  : error.NOTFOUND.error
                 } ;
               reject(notFound);
 
@@ -37,7 +37,7 @@ const getProductDetails = (productId)=>{
             logger.debug(err);
             const serviceError ={
               'service' : 'product',
-              'status' : error.SERVICE_UNAVAILABLE
+              'error' : error.SERVICE_UNAVAILABLE.error
             } ;
             reject(serviceError);
           });

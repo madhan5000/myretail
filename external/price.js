@@ -24,7 +24,7 @@ const getPriceDetails = (productId)=>{
                     logger.info(`${productId} : NOT FOUND in price API`);
                     const notFound = {
                       'service' : 'price',
-                      'status'  : error.NOTFOUND
+                      'error'  : error.NOTFOUND.error
                     } ;
                     reject(notFound);
                 }else{
@@ -36,7 +36,7 @@ const getPriceDetails = (productId)=>{
             logger.debug(err);
             const serviceError ={
               'service' : 'price',
-              'status' : error.SERVICE_UNAVAILABLE
+              'error' : error.SERVICE_UNAVAILABLE.error
             } ;
             reject(serviceError);
           });

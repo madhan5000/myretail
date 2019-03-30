@@ -37,7 +37,7 @@ app.get('/api/v1/products/:id', async (req, res) => {
         logger.debug(JSON.stringify(err));
         item.status.push(JSON.parse(JSON.stringify(err)));
 
-        if(err.status.error.code == error.SERVICE_UNAVAILABLE.error.code){
+        if(err.error.code == error.SERVICE_UNAVAILABLE.error.code){
             productServiceError = true;
         }
     }
@@ -49,7 +49,7 @@ app.get('/api/v1/products/:id', async (req, res) => {
     catch(err){
         logger.debug(JSON.stringify(err));
         item.status.push(JSON.parse(JSON.stringify(err)));
-        if(err.status.error.code == error.SERVICE_UNAVAILABLE.error.code){
+        if(err.error.code == error.SERVICE_UNAVAILABLE.error.code){
             priceServiceError = true;
         }
     }

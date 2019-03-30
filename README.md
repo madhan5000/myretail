@@ -80,21 +80,17 @@ When requested product is not available
 "status": [
     {
       "service": "product",
-      "status": {
-        "error": {
-          "code": "NOTFOUND",
-          "message": "Item not found"
-        }
+      "error": {
+        "code": "NOTFOUND",
+        "message": "Item not found"
       }
     },
     {
       "service": "price",
-      "status": {
-        "error": {
-          "code": "NOTFOUND",
-          "message": "Item not found"
+      "error": {
+        "code": "NOTFOUND",
+        "message": "Item not found"
         }
-      }
     }
   ]
 }
@@ -113,19 +109,17 @@ When external service is not avaliable
 "status": [
     {
       "service": "product",
-      "status": {
-        "error": {
-          "code": "SERVICE_UNAVAILABLE",
-          "message": "Service Unavaliable"
-        }
+      "error": {
+        "code": "SERVICE_UNAVAILABLE",
+        "message": "Service Unavaliable"
       }
     },
     {
       "service": "price",
       "status": {
-        "error": {
-          "code": "SERVICE_UNAVAILABLE",
-          "message": "Service Unavaliable"
+      "error": {
+        "code": "SERVICE_UNAVAILABLE",
+        "message": "Service Unavaliable"
         }
       }
     }
