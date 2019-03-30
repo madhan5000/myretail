@@ -118,8 +118,6 @@ app.put('/api/v1/products/:id',async (req, res) => {
     let dbItemIndex = database.findIndex((item)=>{
         return item.id == _id;
     });
-    if(dbItemIndex < 0)
-        return res.status(200).send({error : {message : `item ${_id} not found, use POST method if you want to create a product`}});
     logger.info(dbItemIndex)
     database[dbItemIndex] = req.body;
     return res.status(200).send({success :{message : `item ${_id} updated`}});
