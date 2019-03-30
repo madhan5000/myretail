@@ -22,9 +22,11 @@ const getProductDetails = (productId)=>{
               if(utils._isEmpty(result.product.item)){
                 logger.info(`${productId} : NOT FOUND in product API`);
                 const notFound = {
-                  'service' : 'price',
+                  'service' : 'product',
                   'status'  : error.NOTFOUND
                 } ;
+              reject(notFound);
+
               }else{
                 resolve(result.product.item.product_description.title);
               }

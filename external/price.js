@@ -9,6 +9,7 @@ const getPriceDetails = (productId)=>{
     return new Promise ((resolve,reject)=>{
        
         const apiUrl = config.extApi.price.replace('${productId}',productId);
+        logger.debug(apiUrl);
         const request = https.get(apiUrl, (res) => {
             let data = '';
 
